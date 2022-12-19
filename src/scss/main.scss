@@ -1,1 +1,257 @@
 @import "reset";
+
+*{
+    padding: 0%;
+    margin: 0%;
+    color: black;
+    font-family: sans-serif;
+    font-size: .9em;
+}
+
+body{
+    position: relative;
+}
+
+header{
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 60px;
+    border-bottom: 2px solid silver;
+}
+/*Configuração da logo M3 no menu*/
+.cimglogo{
+    position: absolute;
+    left: 10%;
+    padding: 15px;
+}
+/*Configuração do carrinho*/
+.carrinho{
+    position: absolute;
+    display: flex;
+    width: 35px;
+    right: 10%;
+    padding: 10px;
+}
+/*Configuração da quantidade de itens no carrinho*/
+header>span{
+    position: absolute;
+    right: 10%;
+    top: 32px;
+    text-align: center;
+    font-size: .9em;
+    background-color: blue;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-weight: bolder;
+    color: white;
+}
+/*Configuração do menu lateral de opções*/
+
+/*Configuração do título*/
+.titulo{
+    padding: 30px 0px 35px 20px;
+    font-size: 1.8em;
+
+}
+.menulateral{
+    position: absolute;
+    left: 14.5%;
+    background-color: transparent;
+    width: 200px;
+    padding-bottom: 30px;
+}
+.menulateral ul{
+    list-style: none;
+}
+.menulateral ul li{
+    line-height: 25px; 
+}
+
+.menulateral ul ul{
+    display: none;
+}
+/*Configuração das cores*/
+.vermaiscores.some{
+    display: none;
+}
+
+.menulateral ul .maiscores.mostra{
+    display: block;
+}
+/*Configuração dos tamanhos*/
+.configfilttam{
+    text-align: justify;
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    height: 100px;
+}
+
+.configfilttam li{
+    padding-right: 6px;
+}
+
+.configfilttam li input{
+    background-color: transparent;
+    border-color: rgba(192, 192, 192, 0.623);
+    border-style: solid;
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.configfilttam li input:hover{
+    border-color: aqua;
+}
+
+/*Configuração do menu de ordenar*/
+.menuOrdenar{
+    position: absolute;
+    right: 5%;
+    top: 12%;
+}
+
+.menuOrdenar ul{
+    text-align: justify;
+}
+
+.menuOrdenar ul li{
+    background-color: transparent;
+    width: 126px;
+    height: auto;
+    list-style: none;
+    border: 1px solid;
+}
+
+.menuOrdenar ul li ul li{
+    width: 120px;
+    border: none;
+    background-color: transparent;
+    padding: 5px 5px 5px 0px;
+}
+.menuOrdenar ul li a{
+    text-decoration: none;
+} 
+
+.menuOrdenar ul li ul li:hover{
+    background-color: aqua;
+}
+
+.itensOrdenar{
+    display: none;
+} 
+.menuOrdenar ul .itensOrdenar.mostra{
+    display: block;
+}
+/*Configuração dos botões de menu mobile*/
+.asidemobile{
+    display: none;
+
+}
+
+/*Configuração para menu acionados pelo mobile*/
+.menumobilefilt{
+    display: none;
+}
+/*Configuração do conteúdo principal*/
+article{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: dimgray;
+    width: 65%;
+    height: auto;
+    position: absolute;
+    right: 35%;
+    bottom: 38%;
+    transform: translate(50%, 50%);
+}
+
+
+/*Configuração do botão para carregar mais opções*/
+.btnCarregar{ 
+   position: absolute; 
+   background-color: rgba(0, 255, 255, 0.966);
+   color: white;
+   padding: 6px;
+   font-weight: bold;
+   border-color: aqua;
+   cursor: pointer;
+   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.418);
+   bottom: 5%;
+   right: 48%;
+   transform: translate(50%, 0%);
+}
+
+main{
+    // position: relative;
+    margin-bottom: 50px;
+    height: 800px;
+}
+
+footer{
+    position: static;
+    display: block;
+    background-color: black;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 25px;
+    padding: 3px;
+    bottom: 0px;
+}
+
+/*REPONSIVIDADE PARA MOBILE*/
+@media (max-width:1000px){
+    .cimglogo{
+        margin-left: 10%;
+    }
+
+    .carrinho{
+        right: 0%;
+    }
+
+    header>span{
+        right: 0%;
+    }
+
+    .asidedesktop{
+        display: none;
+    }
+
+    .asidemobile{
+        position: absolute;
+        display: block;
+        top: 100px;
+        right: 50%;
+        transform: translate(50%, 0%);
+    }
+
+    .asidemobile input{
+        background-color: transparent;
+        border-color: rgb(169, 169, 169);
+        border-style: double;
+        width: 100px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .asidemobile input:active{
+        border-color: slategray;
+    }
+
+    /*Configuração para menu acionados pelo mobile*/
+    .menumobilefilt{
+        display: block;
+        background-color: rgba(145, 145, 145, 0.699);
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        position: fixed;
+    }
+}

@@ -1,18 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!--<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>-->
   <title>Desenvolvedor M3</title>
   <link rel="stylesheet" href="main.css" />
 </head>
 
 <body>
+ <!--Configurando Menu com os filtros no Mobile-->
+ <nav class="menumobilefilt">
+  
+ </nav>
 
+  <header>
+    <menu>
+      <img class="cimglogo" src="img/logo-m3.png" alt="logo M3">
+    </menu>
+    <nav>
+      <img class="carrinho" src="img/sacola01.png" alt="carrinho">
+    </nav>
+    <span id="carrinhoquant">0</span>
+  </header>
+  
+  <main>
+    <!--Configuração do Menu Lateral da página principal desktop-->
+    <nav class="menulateral">
+      <div class="titulo">Blusas</div>
+      <!--Configuração das opções de cores do menu lateral-->
+      <div class="titulocores">CORES</div>
+        <ul>
+          <li><label for="icoramarelo"><input type="checkbox" name="coramarelo" id="icoramarelo"> Amarelo</label></li>
+          <li><label><input type="checkbox" name="corazul" id="icorazul"> Azul</label></li>
+          <li><label><input type="checkbox" name="corbranco" id="icorbranco"> Branco</label></li>
+          <li><label><input type="checkbox" name="corcinza" id="icorcinza"> Cinza</label></li>
+          <li><label><input type="checkbox" name="corlaranja" id="icorlaranja"> Laranja</label></li>
+          <li><a class="vermaiscores" href="#">Ver todas as cores<span class="material-symbols-outlined">
+          arrow_drop_down</span></a>
+            <ul class="maiscores">
+              <li><label><input type="checkbox" name="corverde" id="icorverde"> Verde</label></li>
+              <li><label><input type="checkbox" name="corvermelho" id="icorvermelho"> Vermelho</label></li>
+              <li><label><input type="checkbox" name="corpreto" id="icorpreto"> Preto</label></li>
+              <li><label><input type="checkbox" name="corrosa" id="icorrosa"> Rosa</label></li>
+              <li><label><input type="checkbox" name="corvinho" id="icorvinho"> Vinho</label></li>
+            </ul>
+          </li>
+        </ul>
+      <div class="titulotamanhos">TAMANHOS</div>
+        <ul class="configfilttam">
+          <li><input type="button" value="P"></li>
+          <li><input type="button" value="M"></li>
+          <li><input type="button" value="G"></li>
+          <li><input type="button" value="GG"></li>
+          <li><input type="button" value="U"></li>
+          <li><input type="button" value="36"></li>
+          <li><input type="button" value="38"></li>
+          <li><input type="button" value="40"></li>
+          <li><input type="button" value="42"></li>
+          <li><input type="button" value="44"></li>
+          <li><input type="button" value="46"></li>
+        </ul>
+      <div class="tituloprecos">FAIXA DE PREÇO</div>
+        <ul>
+          <li><label><input type="radio" name="preco" id="iprecoate50">de R$0 até R$50</label></li>
+          <li><label><input type="radio" name="preco" id="iprecoate150">de R$51 até R$150</label></li>
+          <li><label><input type="radio" name="preco" id="iprecoate300">de R$151 até R$300</label></li>
+          <li><label><input type="radio" name="preco" id="iprecoate500">de R$301 até R$500</label></li>
+          <li><label><input type="radio" name="preco" id="iprecoacima500">a partir de R$500</label></li>
+        </ul>
+    </nav>
+    <nav class="menuOrdenar">
+      <ul>
+        <li>
+          <a class="ordenarMenuLateral" href="#">Ordenar por:<span class="material-symbols-outlined">
+            arrow_drop_down</span></a>
+            <ul class="itensOrdenar">
+              <li><a href="#">Mais recentes</a></li>
+              <li><a href="#">Menor preço</a></li>
+              <li><a href="#">Maior preço</a></li>
+            </ul>
+        </li>
+      </ul>
+    </nav>
+    <!--Botões que acionam os menus para o mobile--> 
+    <aside class="asidemobile">
+      <input type="button" value="Filtrar"><input type="button" value="Ordenar">
+    </aside>
+
+    <!--Conteúdo princípal do site-->
+    <article class="conteudoprincipal">
+      <div ></div>
+      <!--<div><input class="btnCarregar" type="button" value="Carregar Mais"></div>-->
+    </article>  
+    
+
+    
+    
+  </main>
+
+  <footer>Agência M3 - Agência de Perfomance Digital</footer>
+
+  <!--<script type="text/javascript" src="script.js"></script>-->
 </body>
-<h1>Desafio m3</h1>
+
+
 
 <script src="bundle.js"></script>
 

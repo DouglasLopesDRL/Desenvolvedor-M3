@@ -4,6 +4,7 @@ import { Product } from "./Product";
 //Controller
 const serverUrl = "http://localhost:5000";
 let listaRoupas:Roupa[];
+var itemCarrinho:Carrinho;
 
 function main() {
   fetch(serverUrl+'/products').then(function(response) {
@@ -11,16 +12,9 @@ function main() {
   }).then(function(data){
     const roupa = new Roupa();
     listaRoupas= roupa.parseJson(data);
-    popularProdutos(listaRoupas);
+   // popularProdutos(listaRoupas);
+   inicializarLoja(listaRoupas);
   });
-}
-
-function popularProdutos(listRoupas:Roupa[]){
-  for(let roupa of listRoupas){
-    let divProduto = $('<div/>').html(roupa.name);
-    $('.conteudoprincipal').append(divProduto);
-    //Preenche interface conteudoprincipal
-  }
 }
 
 function filtrarProdutos(){
@@ -51,7 +45,6 @@ class Roupa implements Product{
         let roupa = new Roupa();
 
         roupa.id = obj.id;
-        roupa.id= obj.id;
         roupa.name= obj.name;
         roupa.price= obj.price;
         roupa.parcelamento= obj.parcelamento;
@@ -66,14 +59,12 @@ class Roupa implements Product{
       return listaRoupas;
   }
 
-  printRoupa():void {
-    console.log("Teste");
-  }
 }
 
 class Carrinho {
   private itens:Product[];
   private valorTotal:number;
+  private qtdItensCarrinho: number;
 
   adicionarProduto(produto:Product){
     this.valorTotal += produto.price;
@@ -83,8 +74,53 @@ class Carrinho {
   getTotalItens():number {
     return this.itens.length;
   }
+
+  getQtdItensCarrinho():number{
+    return this.qtdItensCarrinho;
+  }
+
+  setQtdItensCarrinho():void{
+    this.qtdItensCarrinho++;
+  }
+
+ public AdicionarProdutoAoCarrinho(){
+    //  const quantidadeItemCarrinho = document.getElementById("carrinhoquant");
+    //  this.setQtdItensCarrinho();
+    //  quantidadeItemCarrinho.innerHTML = `${this.getQtdItensCarrinho()}`;
+    // console.log("FOI");
+  }
+
 }
 
+/*Iniciliar loja:*/
+function inicializarLoja(listRoupas:Roupa[]){
+  var containerProdutos = document.getElementsByClassName("conteudoprincipal")[0];
+   for(let val of listRoupas){
+     console.log(val.name);
+     let parcelamentoComVirgula = String(val.parcelamento[1]);
+     containerProdutos.innerHTML+=
+     `<div class="produto">
+         <img src="${val.image}"/>
+         <p>${val.name}</p>
+         <p>R$ ${val.price},00</p>
+         <p>até ${val.parcelamento[0]}x de R$${parcelamentoComVirgula.replace(".",",")}</p>
+         <input class="btnComprar" type="button" value="Comprar">
+       </div>
+     `;
+   }
+   adicionarEventoClickAosBotoes();
+ }
+ /*Adicionar itens ao carrinho*/
+ function adicionarEventoClickAosBotoes(){
+  const btnComprar = document.getElementsByClassName("btnComprar");
+  for(let btn of btnComprar){
+    btn.addEventListener('click',function(){
+     // itemCarrinho.AdicionarProdutoAoCarrinho();
+
+    })
+  }
+ }
+ 
 
 /*Controle de menus interativos*/
 $('.vermaiscores').click(function(){

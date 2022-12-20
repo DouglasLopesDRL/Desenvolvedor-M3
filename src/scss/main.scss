@@ -110,7 +110,7 @@ header>span{
 .menuOrdenar{
     position: absolute;
     right: 5%;
-    top: 12%;
+    top: 5%;
 }
 
 .menuOrdenar ul{
@@ -156,19 +156,19 @@ header>span{
     display: none;
 }
 /*Configuração do conteúdo principal*/
-article{
+.conteudoprincipal{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
+    justify-content: space-between;
+    flex-direction: row;
     background-color: dimgray;
     width: 65%;
     height: auto;
     position: absolute;
-    right: 35%;
-    bottom: 38%;
-    transform: translate(50%, 50%);
+    right: 3%;
+    top: 12%;
+   // transform: translate(50%, 50%);
 }
 
 
@@ -190,7 +190,7 @@ article{
 main{
     // position: relative;
     margin-bottom: 50px;
-    height: 800px;
+    height: 1700px;
 }
 
 footer{

@@ -1,29 +1,9 @@
 import * as $ from 'jquery';
+import { event } from 'jquery';
 import { Product } from "./Product";
 
-//Controller
-const serverUrl = "http://localhost:5000";
-let listaRoupas:Roupa[];
-var itemCarrinho:Carrinho;
 
-function main() {
-  fetch(serverUrl+'/products').then(function(response) {
-    return response.text();
-  }).then(function(data){
-    const roupa = new Roupa();
-    listaRoupas= roupa.parseJson(data);
-   // popularProdutos(listaRoupas);
-   inicializarLoja(listaRoupas);
-  });
-}
-
-function filtrarProdutos(){
-  
-}
-
-document.addEventListener("DOMContentLoaded", main);
-
-//models
+//Modelos
 class Roupa implements Product{
   id: string;
   name: string;
@@ -60,37 +40,41 @@ class Roupa implements Product{
   }
 
 }
-
 class Carrinho {
-  private itens:Product[];
+  private itens:Product[] = [];
   private valorTotal:number;
-  private qtdItensCarrinho: number;
 
-  adicionarProduto(produto:Product){
+ public adicionarProduto(produto:Product){
     this.valorTotal += produto.price;
     this.itens.push(produto);
   }
 
-  getTotalItens():number {
+  public getQtdItensCarrinho():number{
     return this.itens.length;
   }
-
-  getQtdItensCarrinho():number{
-    return this.qtdItensCarrinho;
-  }
-
-  setQtdItensCarrinho():void{
-    this.qtdItensCarrinho++;
-  }
-
- public AdicionarProdutoAoCarrinho(){
-    //  const quantidadeItemCarrinho = document.getElementById("carrinhoquant");
-    //  this.setQtdItensCarrinho();
-    //  quantidadeItemCarrinho.innerHTML = `${this.getQtdItensCarrinho()}`;
-    // console.log("FOI");
-  }
-
 }
+
+
+//Controlador
+const serverUrl = "http://localhost:5000";
+let listaRoupas:Roupa[];
+
+function main() {
+  fetch(serverUrl+'/products').then(function(response) {
+    return response.text();
+  }).then(function(data){
+    const roupa = new Roupa();
+    listaRoupas= roupa.parseJson(data);
+   inicializarLoja(listaRoupas);
+  });
+}
+
+function filtrarProdutos(){
+  
+}
+
+document.addEventListener("DOMContentLoaded", main);
+
 
 /*Iniciliar loja:*/
 function inicializarLoja(listRoupas:Roupa[]){
@@ -104,23 +88,42 @@ function inicializarLoja(listRoupas:Roupa[]){
          <p>${val.name}</p>
          <p>R$ ${val.price},00</p>
          <p>até ${val.parcelamento[0]}x de R$${parcelamentoComVirgula.replace(".",",")}</p>
-         <input class="btnComprar" type="button" value="Comprar">
+         <input data-id="${val.id}" class="btnComprar" type="button" value="Comprar">
        </div>
      `;
    }
    adicionarEventoClickAosBotoes();
  }
- /*Adicionar itens ao carrinho*/
+ /*Configuração do Carrinho*/
+ let itemCarrinho:Carrinho;
+ itemCarrinho = new Carrinho();
+
+function identificarItem(key:string){
+  return listaRoupas.find(roupa=> roupa.id == key);
+}
+
+function atualizarCarrinho(){
+  let carrinhoquant = document.getElementById("carrinhoquant");
+  carrinhoquant.innerHTML = `${itemCarrinho.getQtdItensCarrinho()}`;
+}
+
  function adicionarEventoClickAosBotoes(){
   const btnComprar = document.getElementsByClassName("btnComprar");
   for(let btn of btnComprar){
-    btn.addEventListener('click',function(){
-     // itemCarrinho.AdicionarProdutoAoCarrinho();
-
+    btn.addEventListener('click',function(event){
+      let idProduto = (this.getAttribute('data-id')).toString();
+      let produto = identificarItem(idProduto);
+      itemCarrinho.adicionarProduto(produto);
+      atualizarCarrinho();
     })
   }
  }
  
+/*Controle dos filtros*/
+function teste(){
+  alert("foi");
+}
+
 
 /*Controle de menus interativos*/
 $('.vermaiscores').click(function(){

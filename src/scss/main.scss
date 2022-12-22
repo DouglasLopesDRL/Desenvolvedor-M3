@@ -15,7 +15,7 @@ body{
     flex-grow: 1;
 }
 
-main{
+.main{
    // min-width: 1500px;
    min-height: 1700px;
    position: relative;
@@ -213,21 +213,15 @@ header>span{
     bottom: 15%;
    right: 35%;
    transform: translate(50%, 0%);
+   
 }
-// .btnCarregar{ 
-//    position: absolute; 
-//    background-color: rgba(0, 255, 255, 0.966);
-//    color: white;
-//    padding: 6px;
-//    font-weight: bold;
-//    border-color: aqua;
-//    cursor: pointer;
-//    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.418);
-//    bottom: 5%;
-//    right: 48%;
-//    transform: translate(50%, 0%);
-// }
 
+.btnCarregarMais.carregarPag{
+    display: none;
+}
+.main.carregarPag{
+    min-height: 2200px;
+}
 
 /*Configuração do rodapé*/
 .rodape{

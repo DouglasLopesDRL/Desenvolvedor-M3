@@ -105,6 +105,7 @@ function inicializarLoja(){
           <img src="${val.image}"/>
           <p>R$ ${val.price},00</p>
           <p>${val.color}</p>
+          <p>${val.size}</p>
           <p>até ${val.parcelamento[0]}x de R$${parcelamentoComVirgula.replace(".",",")}</p>
           <input data-id="${val.id}" class="btnComprar" type="button" value="Comprar">
         </div>
@@ -124,6 +125,7 @@ function inicializarLoja(){
           <img src="${val.image}"/>
           <p>R$ ${val.price},00</p>
           <p>${val.color}</p>
+          <p>${val.size}</p>
           <p>até ${val.parcelamento[0]}x de R$${parcelamentoComVirgula.replace(".",",")}</p>
           <input data-id="${val.id}" class="btnComprar" type="button" value="Comprar">
         </div>
@@ -167,30 +169,23 @@ function atualizarCarrinho(){
 $('.filtro').click(function(event){
   let check:boolean = false;
   let objFiltro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
-  if(filtroAtivos.length <= 0 ){
-    filtroAtivos.push(objFiltro);
-  } else{
-      for(let p in filtroAtivos){
-        if(filtroAtivos[p].valor == objFiltro.valor){
-          filtroAtivos = filtroAtivos.filter(function(i){return i.valor != objFiltro.valor});
-          check = false;
-        }
-        // if(filtroAtivos[p].valor == objFiltro.valor){
-        //   filtroAtivos[p].id = objFiltro.id;
-        //   filtroAtivos[p].tipo = objFiltro.tipo;
-        //   filtroAtivos[p].valor = objFiltro.valor;
-        //   check = false;
-        // } 
-        else {check = true;}
+  for(let p in filtroAtivos){
+    if(filtroAtivos[p].valor == objFiltro.valor){
+      filtroAtivos = filtroAtivos.filter(function(i){return i.valor != objFiltro.valor});
+      check = true;
+      break;
     }
   } 
-  if(check == true){
+  if(check == false){
     filtroAtivos.push(objFiltro);
-    check = false;
   }
   filtrarProdutos();
-  console.log("LISTA FRILTROS",filtroAtivos);
   inicializarLoja();
+  if(filtroAtivos.length > 0 && filtroAtivos.length < 6){
+    $('.main').toggleClass('diminuirMainProsFiltros');
+  } else{
+    $('.main').toggleClass('retornarMainPadrao');
+  }
 });
 
 /*Configurando uma nova listagem de produtos aplicando filtros */
@@ -236,8 +231,8 @@ $('.btnCarregarMais').click(function(){
   carregarMenos = false;
   carregarParaMediaQuery = false;
   if(filtroAtivos.length <= 0){
-    $('.btnCarregarMais').toggleClass('carregarPag');
-    $('.main').toggleClass('carregarPag');
+    $('.btnCarregarMais').toggleClass('carregarMaisProdutos');
+    $('.main').toggleClass('carregarMaisProdutos');
   }
   inicializarLoja();
 

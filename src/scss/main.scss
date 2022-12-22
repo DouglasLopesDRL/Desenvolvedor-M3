@@ -58,12 +58,26 @@ header>span{
 }
 /*Configuração do menu lateral de opções*/
 
-/*Configuração do título*/
+/*Configuração dos títulos*/
 .titulo{
     padding: 60px 0px 35px 20px;
     font-size: 1.8em;
-
 }
+
+.titulocores{
+    padding-bottom: 10px;
+}
+
+.titulotamanhos{
+    padding-bottom: 10px;
+    padding-top: 12px;
+}
+
+.tituloprecos{
+    padding-top: 12px;
+    padding-bottom: 10px;
+}
+/*Configuração do menu lateral*/
 .menulateral{
     position: absolute;
     left: 14.5%;
@@ -216,11 +230,19 @@ header>span{
    
 }
 
-.btnCarregarMais.carregarPag{
+.btnCarregarMais.carregarMaisProdutos{
     display: none;
 }
-.main.carregarPag{
-    min-height: 2200px;
+.main.carregarMaisProdutos{
+    min-height: 2300px;
+}
+
+.main.diminuirMainProsFiltros{
+    min-height: 1000px;
+}
+
+.main.retornarMainPadrao{
+    min-height: 1700px;
 }
 
 /*Configuração do rodapé*/

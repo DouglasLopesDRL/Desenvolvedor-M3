@@ -54,10 +54,13 @@ class Carrinho {
   }
 }
 
-
 //Controlador
 const serverUrl = "http://localhost:5000";
 let listaRoupas:Roupa[];
+let listaRoupasFiltrada:Roupa[];
+let carregarMenos:boolean = false;
+let carregarMais:boolean = false;
+let carregarParaMediaQuery:boolean = false;
 
 function main() {
   fetch(serverUrl+'/products').then(function(response) {
@@ -69,28 +72,40 @@ function main() {
   });
 }
 
-function filtrarProdutos(){
-  
-}
-
 document.addEventListener("DOMContentLoaded", main);
 
 
 /*Iniciliar loja:*/
 function inicializarLoja(listRoupas:Roupa[]){
   var containerProdutos = document.getElementsByClassName("conteudoprincipal")[0];
+  let cont:number;
+  // console.log(listaRoupas.length);
+  /*Limitando o número de produtos na tela*/
+  if(carregarMenos == false && carregarMais == true && carregarParaMediaQuery == false){
+     cont = 14;
+  } else if(carregarMenos == true && carregarMais == false && carregarParaMediaQuery == false){
+     cont = 4;
+  } else {
+    cont = 9;
+  }
+  /* */
+  containerProdutos.innerHTML = '';
    for(let val of listRoupas){
      console.log(val.name);
-     let parcelamentoComVirgula = String(val.parcelamento[1]);
+     let parcelamentoComVirgula = String(val.parcelamento);
      containerProdutos.innerHTML+=
-     `<div class="produto">
+     `<div class="produtosDaPag">
          <img src="${val.image}"/>
-         <p>${val.name}</p>
          <p>R$ ${val.price},00</p>
+         <p>${val.color}</p>
          <p>até ${val.parcelamento[0]}x de R$${parcelamentoComVirgula.replace(".",",")}</p>
          <input data-id="${val.id}" class="btnComprar" type="button" value="Comprar">
        </div>
      `;
+     cont--;
+    if(cont<=0){
+      break;
+    }
    }
    adicionarEventoClickAosBotoes();
  }
@@ -111,19 +126,76 @@ function atualizarCarrinho(){
   const btnComprar = document.getElementsByClassName("btnComprar");
   for(let btn of btnComprar){
     btn.addEventListener('click',function(event){
-      let idProduto = (this.getAttribute('data-id')).toString();
-      let produto = identificarItem(idProduto);
-      itemCarrinho.adicionarProduto(produto);
-      atualizarCarrinho();
+    let idProduto = (this.getAttribute('data-id')).toString();
+    let produto = identificarItem(idProduto);
+    itemCarrinho.adicionarProduto(produto);
+    atualizarCarrinho();
     })
   }
  }
+
  
 /*Controle dos filtros*/
-function teste(){
-  alert("foi");
-}
+let filtroAtivos:{
+  id:string,
+  tipo:string,
+  valor:string
+}[] = [];
 
+$('.filtro').click(function(event){
+  let check:number = 0;
+  let objFiltro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
+  if(filtroAtivos.length <= 0 ){
+    filtroAtivos.push(objFiltro);
+  } else{
+      for(let p in filtroAtivos){
+        if(filtroAtivos[p].valor == objFiltro.valor){
+          filtroAtivos = filtroAtivos.filter(function(i){return i.valor != objFiltro.valor});
+          check = 0;
+        }
+        else if(filtroAtivos[p].tipo == objFiltro.tipo){
+          filtroAtivos[p].id = objFiltro.id;
+          filtroAtivos[p].tipo = objFiltro.tipo;
+          filtroAtivos[p].valor = objFiltro.valor;
+          check = 0;
+        } else {check = 1;}
+    }
+  } 
+  if(check == 1){
+    filtroAtivos.push(objFiltro);
+    check = 0;
+  }
+  filtrarProdutos();
+  console.log("LISTA FRILTRADA DEPOIS",listaRoupasFiltrada);
+  inicializarLoja(listaRoupasFiltrada);
+});
+
+/*Configurando uma nova listagem de produtos aplicando filtros */
+function filtrarProdutos(){
+  listaRoupasFiltrada = listaRoupas;
+  filtroAtivos.forEach(filtro =>{
+    listaRoupasFiltrada = listaRoupasFiltrada.filter(function(roupa){
+      let condicaoSatisfeita:boolean = false;
+      switch(filtro.tipo){
+        case 'size':
+          condicaoSatisfeita = (roupa[filtro.tipo].includes(filtro.valor));
+          break;
+        case 'color':
+          condicaoSatisfeita = (roupa[filtro.tipo] == filtro.valor);
+          break;
+        case 'price':
+          let limiteInferior = filtro.valor.split('/')[0];
+          let limiteSuperior = filtro.valor.split('/')[1];
+          condicaoSatisfeita = (Number(roupa[filtro.tipo]) >= Number(limiteInferior) && Number(roupa[filtro.tipo]) <= Number(limiteSuperior));
+          break;
+        default:
+          break;  
+      }
+      return condicaoSatisfeita;
+    });
+  });
+  return listaRoupasFiltrada;
+}
 
 /*Controle de menus interativos*/
 $('.vermaiscores').click(function(){
@@ -135,3 +207,10 @@ $('.ordenarMenuLateral').click(function(){
   $('.menuOrdenar ul .itensOrdenar').toggleClass('mostra')
 });
 
+/*Controle do botão de carregar mais*/
+$('.btnCarregarMais').click(function(){
+  carregarMais = true;
+  carregarMenos = false;
+  carregarParaMediaQuery = false;
+  inicializarLoja(listaRoupas);
+});

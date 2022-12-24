@@ -15,12 +15,6 @@ body{
     flex-grow: 1;
 }
 
-.main{
-   // min-width: 1500px;
-   min-height: 1700px;
-   position: relative;
-}
-
 header{
     display: flex;
     background-color: white;
@@ -191,13 +185,16 @@ header>span{
     flex-direction: row;
     flex-grow: 1;
     background-color: transparent;
-    max-width: 50%;
+    max-width: 55%;
+    min-width: 25%;
     height: auto;
-    position: absolute;
-    right: 130px;
-    top: 165px;
-    // padding-bottom: 400px;
+    // position: absolute;
+    // right: 130px;
+    // top: 165px;
+    padding-bottom: 200px;
    //transform: translate(50%, 50%);
+   margin-left: 40%;
+   margin-top: 12%;
 }
 
 .produtosDaPag{
@@ -224,9 +221,9 @@ header>span{
     cursor: pointer;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.418);
     position: absolute;
-    bottom: 15%;
-   right: 35%;
-   transform: translate(50%, 0%);
+    bottom: 50px;
+    right: 35%;
+    transform: translate(50%, 0%);
    
 }
 
@@ -238,7 +235,7 @@ header>span{
 }
 
 .main.diminuirMainProsFiltros{
-    min-height: 1000px;
+    min-height: 900px;
 }
 
 .main.retornarMainPadrao{
@@ -256,6 +253,10 @@ header>span{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+main{
+    min-height: auto;
+    position: relative;
+ }
 
 /*REPONSIVIDADE PARA MOBILE*/
 @media (max-width:1000px){

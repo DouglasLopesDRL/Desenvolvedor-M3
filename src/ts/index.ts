@@ -17,7 +17,6 @@ class Roupa implements Product{
   public constructor(){}
 
   parseJson(json:string):Roupa[]{
-      // return <Roupa[]> JSON.parse(json);
       let listaObjetos = JSON.parse(json);
       let listaRoupas:Roupa[] = [];
 
@@ -125,10 +124,8 @@ function inicializarLoja(cont:number,ref:number){
 
   /*Organizando entradas de conteúdo*/
   if(ref == 0){
-    console.log("LISTA PADRAO:",ref);
     carregarConteudoDaPag(cont, listaRoupas);
   } else if(ref == 1){
-    console.log("LISTA FILTRADA:",ref);
     carregarConteudoDaPag(cont, listaRoupasFiltrada);
   } 
    adicionarEventoClickAosBotoes();
@@ -173,15 +170,13 @@ function separarFiltrosNosArrays(objFiltro:filtro, filtrosAny:filtro[]){
 
 $('.filtroCor').click(function(event){
   let objFiltro:filtro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
-  filtroAtivosCores = separarFiltrosNosArrays(objFiltro, filtroAtivosCores);
-  aplicarFiltros();
-  inicializarLoja(9,1);
+  let indexFiltroAtivo = filtroAtivos.findIndex(filtro => filtro.id == objFiltro.id);
+
 });
 
-$('.filtroTamanho').click(function(event){
+$('#filtroTamanho').click(function(event){
   let objFiltro:filtro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
-  filtroAtivosTamanhos = separarFiltrosNosArrays(objFiltro, filtroAtivosTamanhos);
-  aplicarFiltros(); 
+  let indexFiltroAtivo = filtroAtivos.findIndex(filtro => filtro.id == objFiltro.id);
 });
 
 $('.filtroPreco').click(function(event){

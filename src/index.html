@@ -39,8 +39,9 @@
           <li><label><input class="filtro" data-id="3" data-tipo="color" data-valor="Branco" type="checkbox" name="cor" id="icorbranco"> Branco</label></li>
           <li><label><input class="filtro" data-id="4" data-tipo="color" data-valor="Cinza" type="checkbox" name="cor" id="icorcinza"> Cinza</label></li>
           <li><label><input class="filtro" data-id="5" data-tipo="color" data-valor="Laranja" type="checkbox" name="cor" id="icorlaranja"> Laranja</label></li>
-          <li><a class="vermaiscores" href="#">Ver todas as cores<span class="material-symbols-outlined">
-          arrow_drop_down</span></a>
+          <li><a class="vermaiscores" href="#">Ver todas as cores<span id="spanVerMaisCores" class="material-symbols-outlined">
+            expand_more
+            </span></a>
             <ul class="maiscores">
               <li><label><input class="filtro" data-id="6" data-tipo="color" data-valor="Verde" type="checkbox" name="cor" id="icorverde"> Verde</label></li>
               <li><label><input class="filtro" data-id="7" data-tipo="color" data-valor="Vermelho" type="checkbox" name="cor" id="icorvermelho"> Vermelho</label></li>
@@ -52,32 +53,33 @@
         </ul>
       <div class="titulotamanhos">TAMANHOS</div>
         <ul class="configfilttam">
-          <li><input input class="filtroTamanho" data-id="11" data-tipo="size" data-valor="P" type="button" value="P"></li>
-          <li><input input class="filtroTamanho" data-id="12" data-tipo="size" data-valor="G" type="button" value="G"></li>
-          <li><input input class="filtroTamanho" data-id="13" data-tipo="size" data-valor="M" type="button" value="M"></li>
-          <li><input input class="filtroTamanho" data-id="14" data-tipo="size" data-valor="GG" type="button" value="GG"></li>
-          <li><input input class="filtroTamanho" data-id="15" data-tipo="size" data-valor="U" type="button" value="U"></li>
-          <li><input input class="filtroTamanho" data-id="16" data-tipo="size" data-valor="36" type="button" value="36"></li>
-          <li><input input class="filtroTamanho" data-id="17" data-tipo="size" data-valor="38" type="button" value="38"></li>
-          <li><input input class="filtroTamanho" data-id="18" data-tipo="size" data-valor="40" type="button" value="40"></li>
-          <li><input input class="filtroTamanho" data-id="19" data-tipo="size" data-valor="42" type="button" value="42"></li>
-          <li><input input class="filtroTamanho" data-id="20" data-tipo="size" data-valor="44" type="button" value="44"></li>
-          <li><input input class="filtroTamanho" data-id="21" data-tipo="size" data-valor="46" type="button" value="46"></li>
+          <li><input input class="filtro" id="11" data-id="11" data-tipo="size" data-valor="P" type="button" value="P"></li>
+          <li><input input class="filtro" id="12" data-id="12" data-tipo="size" data-valor="G" type="button" value="G"></li>
+          <li><input input class="filtro" id="13" data-id="13" data-tipo="size" data-valor="M" type="button" value="M"></li>          
+          <li><input input class="filtro" data-id="14" data-tipo="size" data-valor="GG" type="button" value="GG"></li>
+          <li><input input class="filtro" data-id="15" data-tipo="size" data-valor="U" type="button" value="U"></li>          
+          <li><input input class="filtro" data-id="16" data-tipo="size" data-valor="36" type="button" value="36"></li>
+          <li><input input class="filtro" data-id="17" data-tipo="size" data-valor="38" type="button" value="38"></li>
+          <li><input input class="filtro" data-id="18" data-tipo="size" data-valor="40" type="button" value="40"></li>
+          <li><input input class="filtro" data-id="19" data-tipo="size" data-valor="42" type="button" value="42"></li>
+          <li><input input class="filtro" data-id="20" data-tipo="size" data-valor="44" type="button" value="44"></li>
+          <li><input input class="filtro" data-id="21" data-tipo="size" data-valor="46" type="button" value="46"></li>
         </ul>
       <div class="tituloprecos">FAIXA DE PREÇO</div>
         <ul>
-          <li><label><input  input class="filtroPreco" data-id="22" data-tipo="price" data-valor="0/50" type="checkbox" name="preco" id="iprecoate50"> de R$0 até R$50</label></li>
-          <li><label><input  input class="filtroPreco" data-id="23" data-tipo="price" data-valor="51/150" type="checkbox" name="preco" id="iprecoate150"> de R$51 até R$150</label></li>
-          <li><label><input  input class="filtroPreco" data-id="24" data-tipo="price" data-valor="151/300" type="checkbox" name="preco" id="iprecoate300"> de R$151 até R$300</label></li>
-          <li><label><input  input class="filtroPreco" data-id="25" data-tipo="price" data-valor="301/500" type="checkbox" name="preco" id="iprecoate500"> de R$301 até R$500</label></li>
-          <li><label><input  input class="filtroPreco" data-id="26" data-tipo="price" data-valor="501/1000" type="checkbox" name="preco" id="iprecoacima500"> a partir de R$501</label></li>
+          <li><label><input  input class="filtro" data-id="22" data-tipo="price" data-valor="0/50" type="checkbox" name="preco" id="iprecoate50"> de R$0 até R$50</label></li>
+          <li><label><input  input class="filtro" data-id="23" data-tipo="price" data-valor="51/150" type="checkbox" name="preco" id="iprecoate150"> de R$51 até R$150</label></li>
+          <li><label><input  input class="filtro" data-id="24" data-tipo="price" data-valor="151/300" type="checkbox" name="preco" id="iprecoate300"> de R$151 até R$300</label></li>
+          <li><label><input  input class="filtro" data-id="25" data-tipo="price" data-valor="301/500" type="checkbox" name="preco" id="iprecoate500"> de R$301 até R$500</label></li>
+          <li><label><input  input class="filtro" data-id="26" data-tipo="price" data-valor="501/1000" type="checkbox" name="preco" id="iprecoacima500"> a partir de R$501</label></li>
         </ul>
     </nav>
     <nav class="menuOrdenar">
       <ul>
         <li>
-          <a class="ordenarMenuLateral" href="#">Ordenar por:<span class="material-symbols-outlined">
-            arrow_drop_down</span></a>
+          <a class="ordenarMenuLateral" href="#">Ordenar por:<span id="spanMenuOrdenar" class="material-symbols-outlined">
+            expand_more
+            </span>
             <ul class="itensOrdenar">
               <li><a href="#">Mais recentes</a></li>
               <li><a href="#">Menor preço</a></li>

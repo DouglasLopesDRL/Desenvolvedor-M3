@@ -121,7 +121,6 @@ header>span{
     width: 40px;
     height: 30px;
     cursor: pointer;
-    // outline-color: aqua;
 }
 
 
@@ -138,7 +137,6 @@ header>span{
 
 .menuOrdenar ul{
     text-align: justify;
-//    padding-bottom: 3px;
 }
 
 .menuOrdenar ul li{
@@ -151,7 +149,6 @@ header>span{
 }
 
 .menuOrdenar ul li ul li{
-    // width: 120px;
     display: block;
     border: none;
     background-color: transparent;
@@ -194,10 +191,44 @@ header>span{
     display: none;
 
 }
-
 /*Configuração para menu acionados pelo mobile*/
 .menumobilefilt{
     display: none;
+}
+
+/*Confiuração de marcação de borda nos botões de Tamanho*/
+.filtroTamP.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTamM.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTamG.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTamGG.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTamU.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTam36.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTam38.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTam40.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTam42.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTam44.bordaMarcada{
+    border-color: #00C0EE;
+}
+.filtroTam46.bordaMarcada{
+    border-color: #00C0EE;
 }
 /*Configuração do conteúdo principal*/
 .conteudoprincipal{
@@ -211,21 +242,16 @@ header>span{
     max-width: 55%;
     min-width: 25%;
     height: auto;
-    // position: absolute;
-    // right: 130px;
-    // top: 165px;
     padding-bottom: 200px;
-   //transform: translate(50%, 50%);
-   margin-left: 40%;
-   margin-top: 12%;
+    margin-left: 40%;
+    margin-top: 12%;
 }
-
+/*Configuração das oções de cada produto*/
 .produtosDaPag{
-    // border: 1px solid;
     text-align: center;
     padding: 10px;
 }
-
+/*Configuração do botão de comprar dos produtos*/
 .produtosDaPag .btnComprar{
     width: 195px;
     height: 30px;
@@ -234,6 +260,12 @@ header>span{
     color: white;
     margin-top: 5px;
     cursor: pointer;
+    transition: .3s;
+}
+
+.produtosDaPag .btnComprar:hover{
+    width: 199px;
+    height: 36px;
 }
 /*Configuração do botão para carregar mais opções*/
 .btnCarregarMais{
@@ -251,19 +283,12 @@ header>span{
    
 }
 
-.btnCarregarMais.carregarMaisProdutos{
+.btnCarregarMais.botaoMaisProdutosSome{
     display: none;
 }
-.main.carregarMaisProdutos{
-    min-height: 2300px;
-}
 
-.main.diminuirMainProsFiltros{
-    min-height: 900px;
-}
-
-.main.retornarMainPadrao{
-    min-height: 1700px;
+.btnCarregarMais.botaoMaisProdutosAparece{
+    display: block;
 }
 
 /*Configuração do rodapé*/
@@ -303,7 +328,7 @@ main{
     .asidemobile{
         position: absolute;
         display: block;
-        top: 100px;
+        top: 50px;
         right: 50%;
         transform: translate(50%, 0%);
     }
@@ -312,7 +337,7 @@ main{
         background-color: transparent;
         border-color: rgb(169, 169, 169);
         border-style: double;
-        width: 100px;
+        width: 150px;
         height: 30px;
         cursor: pointer;
     }
@@ -320,8 +345,15 @@ main{
     .asidemobile input:active{
         border-color: slategray;
     }
+
+    .asidemobile h1{
+        font-size: 1.4em;
+        margin-left: 120px;
+        padding-bottom: 15px;
+    }
+
     .btnCarregarMais{
-        display: none;
+        right: 48%;
     }
 
     .menuOrdenar{
@@ -337,7 +369,7 @@ main{
     /*Configuração para menu acionados pelo mobile*/
     .menumobilefilt{
         display: block;
-        background-color: rgba(145, 145, 145, 0.699);
+        background-color: white;
         padding: 20px;
         width: 100%;
         height: 100%;
@@ -354,6 +386,9 @@ main{
     }
     .asidemobile input{
         width: 100px;
+    }
+    .asidemobile h1{
+        margin-left: 73px;
     }
 }
 @media (max-width:600px){
@@ -376,5 +411,8 @@ main{
 
     .asidemobile input{
         width: 80px;
+    }
+    .asidemobile h1{
+        margin-left: 53px;
     }
 }

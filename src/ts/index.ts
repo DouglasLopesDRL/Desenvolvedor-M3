@@ -125,6 +125,7 @@ function inicializarLoja(cont:number,ref:number){
   /*Organizando entradas de conteúdo*/
   if(ref == 0){
     carregarConteudoDaPag(cont, listaRoupas);
+    // $('.btnCarregarMais').toggleClass('botaoMaisProdutosSome');
   } else if(ref == 1){
     carregarConteudoDaPag(cont, listaRoupasFiltrada);
   } 
@@ -202,10 +203,11 @@ function filtrarProdutos(){
       let condicaoSatisfeita:boolean = false;
       switch(filtro.tipo){
         case 'size':
-          console.log("ROUPA",roupa[filtro.tipo], "FILTRO", filtro.valor);
+          // console.log("ROUPA",roupa[filtro.tipo], "FILTRO", filtro.valor);
           condicaoSatisfeita = (roupa[filtro.tipo].includes(filtro.valor));
           break;
         case 'color':
+          console.log("ROUPA",roupa[filtro.tipo], "FILTRO", filtro.valor);
           condicaoSatisfeita = (roupa[filtro.tipo] == filtro.valor);
           break;
         case 'price':
@@ -260,9 +262,42 @@ $('.ordenarMenuLateral').click(function(){
 /*Controle do botão de carregar mais*/
 $('.btnCarregarMais').click(function(){
   if(filtroAtivos.length <= 0){
-    $('.btnCarregarMais').toggleClass('carregarMaisProdutos');
-    $('.main').toggleClass('carregarMaisProdutos');
+    $('.btnCarregarMais').toggleClass('botaoMaisProdutosSome');
     inicializarLoja(14,0);
   }
+});
 
+/*Confiuração de marcação de borda nos botões de Tamanho*/
+$('.filtroTamP').click(function(){
+  $('.filtroTamP').toggleClass('bordaMarcada');
+});
+$('.filtroTamM').click(function(){
+  $('.filtroTamM').toggleClass('bordaMarcada');
+});
+$('.filtroTamG').click(function(){
+  $('.filtroTamG').toggleClass('bordaMarcada');
+});
+$('.filtroTamGG').click(function(){
+  $('.filtroTamGG').toggleClass('bordaMarcada');
+});
+$('.filtroTamU').click(function(){
+  $('.filtroTamU').toggleClass('bordaMarcada');
+});
+$('.filtroTam36').click(function(){
+  $('.filtroTam36').toggleClass('bordaMarcada');
+});
+$('.filtroTam38').click(function(){
+  $('.filtroTam38').toggleClass('bordaMarcada');
+});
+$('.filtroTam40').click(function(){
+  $('.filtroTam40').toggleClass('bordaMarcada');
+});
+$('.filtroTam42').click(function(){
+  $('.filtroTam42').toggleClass('bordaMarcada');
+});
+$('.filtroTam44').click(function(){
+  $('.filtroTam44').toggleClass('bordaMarcada');
+});
+$('.filtroTam46').click(function(){
+  $('.filtroTam46').toggleClass('bordaMarcada');
 });

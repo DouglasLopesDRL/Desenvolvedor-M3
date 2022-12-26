@@ -66,6 +66,8 @@ itemCarrinho = new Carrinho();
 let filtrosAtivosCores:string[] = [];
 let filtroAtivosPrecos:string[] = [];
 let filtroAtivosTamanhos:string[] = [];
+const opcoesMoeda = {style:'currency',currency:'BRL',minimumFractionDigits: 2, maximumFractionDigits: 2};
+const formatoValorMoedaBR = new Intl.NumberFormat('pt-BR',opcoesMoeda);
 
 function main() {
   fetch(serverUrl+'/products').then(function(response) {
@@ -85,16 +87,12 @@ function inicializarLoja(cont:number){
   var containerProdutos = document.getElementsByClassName("conteudoprincipal")[0];
   containerProdutos.innerHTML = '';
     for(let val of listaRoupasExibidas){
-      let parcelamentoComVirgula = String(val.parcelamento[1]);
-      let valorComVirgula = String(val.price);
-      parcelamentoComVirgula = parcelamentoComVirgula.replace(".",",");
-      valorComVirgula = valorComVirgula.replace(".",",");
       containerProdutos.innerHTML+=
       `<div class="produtosDaPag">
           <img src="${val.image}"/>
           <p class="nomeDosProdutos">${val.name}</p>
-          <p class="precoDosProdutos">R$ ${valorComVirgula}</p>
-          <p>até ${val.parcelamento[0]}x de R$${parcelamentoComVirgula}</p>
+          <p class="precoDosProdutos">R$ ${formatoValorMoedaBR.format(val.price)}</p>
+          <p>até ${val.parcelamento[0]}x de R$${formatoValorMoedaBR.format(val.parcelamento[1])}</p>
           <input data-id="${val.id}" class="btnComprar" type="button" value="Comprar">
         </div>
       `;
@@ -286,6 +284,19 @@ $('.botoesMenuFiltrarLimpar').click(function(){
   filtroAtivosTamanhos = [];
   filtrosAtivosCores = [];
   inicializarLoja(9);
+});
+
+/*Configuração dos botões de expandir menus de filtros*/
+$('.botaoExpandeCores').click(function(){
+  $('.tituloMobileCores .expandeCores').toggleClass('expande');
+});
+
+$('.botaoExpandeTamanhos').click(function(){
+  $('.tituloMobileTamanhos ul li').toggleClass('expande');
+});
+
+$('.botaoExpandePrecos').click(function(){
+  $('.tituloMobilePrecos ul li').toggleClass('expande');
 });
 /*Confiuração de marcação de borda nos botões de Tamanho*/
 $('.filtroTamP').click(function(){

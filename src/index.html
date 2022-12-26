@@ -36,25 +36,31 @@
   </div>
   <form action="POST"> 
     <ul>
-      <li class="tituloMobileCores">CORES <span id="" class="material-symbols-outlined">
-        expand_more
-        </span>
-          <li><label><input class="filtroCor" data-id="1" data-tipo="color" data-valor="Amarelo" type="checkbox" name="cor" id="icoramarelo"> Amarelo</label></li>
-          <li><label><input class="filtroCor" data-id="2" data-tipo="color" data-valor="Azul" type="checkbox" name="cor" id="icorazul"> Azul</label></li>
-          <li><label><input class="filtroCor" data-id="3" data-tipo="color" data-valor="Branco" type="checkbox" name="cor" id="icorbranco"> Branco</label></li>
-          <li><label><input class="filtroCor" data-id="4" data-tipo="color" data-valor="Cinza" type="checkbox" name="cor" id="icorcinza"> Cinza</label></li>
-          <li><label><input class="filtroCor" data-id="5" data-tipo="color" data-valor="Laranja" type="checkbox" name="cor" id="icorlaranja"> Laranja</label></li>
-          <li><label><input class="filtroCor" data-id="6" data-tipo="color" data-valor="Verde" type="checkbox" name="cor" id="icorverde"> Verde</label></li>
-          <li><label><input class="filtroCor" data-id="7" data-tipo="color" data-valor="Vermelho" type="checkbox" name="cor" id="icorvermelho"> Vermelho</label></li>
-          <li><label><input class="filtroCor" data-id="8" data-tipo="color" data-valor="Preto" type="checkbox" name="cor" id="icorpreto"> Preto</label></li>
-          <li><label><input class="filtroCor" data-id="9" data-tipo="color" data-valor="Rosa" type="checkbox" name="cor" id="icorrosa"> Rosa</label></li>
-          <li><label><input class="filtroCor" data-id="10" data-tipo="color" data-valor="Vinho" type="checkbox" name="cor" id="icorvinho"> Vinho</label></li>
+      <li class="tituloMobileCores">CORES <a class="botaoExpandeCores" href="#">
+         <span id="" class="material-symbols-outlined">
+          expand_more
+          </span>
+      </a>
+          <ul class="expandeCores">
+            <li><label><input class="filtroCor" data-id="1" data-tipo="color" data-valor="Amarelo" type="checkbox" name="cor" id="icoramarelo"> Amarelo</label></li>
+            <li><label><input class="filtroCor" data-id="2" data-tipo="color" data-valor="Azul" type="checkbox" name="cor" id="icorazul"> Azul</label></li>
+            <li><label><input class="filtroCor" data-id="3" data-tipo="color" data-valor="Branco" type="checkbox" name="cor" id="icorbranco"> Branco</label></li>
+            <li><label><input class="filtroCor" data-id="4" data-tipo="color" data-valor="Cinza" type="checkbox" name="cor" id="icorcinza"> Cinza</label></li>
+            <li><label><input class="filtroCor" data-id="5" data-tipo="color" data-valor="Laranja" type="checkbox" name="cor" id="icorlaranja"> Laranja</label></li>
+            <li><label><input class="filtroCor" data-id="6" data-tipo="color" data-valor="Verde" type="checkbox" name="cor" id="icorverde"> Verde</label></li>
+            <li><label><input class="filtroCor" data-id="7" data-tipo="color" data-valor="Vermelho" type="checkbox" name="cor" id="icorvermelho"> Vermelho</label></li>
+            <li><label><input class="filtroCor" data-id="8" data-tipo="color" data-valor="Preto" type="checkbox" name="cor" id="icorpreto"> Preto</label></li>
+            <li><label><input class="filtroCor" data-id="9" data-tipo="color" data-valor="Rosa" type="checkbox" name="cor" id="icorrosa"> Rosa</label></li>
+            <li><label><input class="filtroCor" data-id="10" data-tipo="color" data-valor="Vinho" type="checkbox" name="cor" id="icorvinho"> Vinho</label></li>
+          </ul>
       </li>
     </ul>
     <ul class="configfilttam">
-      <li class="tituloMobileTamanhos">TAMANHOS <span id="" class="material-symbols-outlined">
-        expand_more
-        </span> 
+      <li class="tituloMobileTamanhos">TAMANHOS <a class="botaoExpandeTamanhos" href="#">
+        <span id="" class="material-symbols-outlined">
+          expand_more
+          </span>
+      </a>
         <ul>
           <li><input class=" filtroTamanho" id="11" data-id="11" data-tipo="size" data-valor="P" type="button" value="P"></li>
           <li><input class=" filtroTamanho" id="13" data-id="13" data-tipo="size" data-valor="M" type="button" value="M"></li>
@@ -72,14 +78,18 @@
     </ul>
 
     <ul>
-      <li class="tituloMobilePrecos">FAIXA DE PREÇO <span id="" class="material-symbols-outlined">
-        expand_more
-        </span>
-        <li><label><input class="filtroPreco" data-id="22" data-tipo="price" data-valor="0/50" type="checkbox" name="preco" id="iprecoate50"> de R$0 até R$50</label></li>
-        <li><label><input class="filtroPreco" data-id="23" data-tipo="price" data-valor="51/150" type="checkbox" name="preco" id="iprecoate150"> de R$51 até R$150</label></li>
-        <li><label><input class="filtroPreco" data-id="24" data-tipo="price" data-valor="151/300" type="checkbox" name="preco" id="iprecoate300"> de R$151 até R$300</label></li>
-        <li><label><input class="filtroPreco" data-id="25" data-tipo="price" data-valor="301/500" type="checkbox" name="preco" id="iprecoate500"> de R$301 até R$500</label></li>
-        <li><label><input class="filtroPreco" data-id="26" data-tipo="price" data-valor="501/1000" type="checkbox" name="preco" id="iprecoacima500"> a partir de R$501</label></li>
+      <li class="tituloMobilePrecos">FAIXA DE PREÇO<a class="botaoExpandePrecos" href="#">
+         <span id="" class="material-symbols-outlined">
+          expand_more
+          </span>
+      </a>
+        <ul>
+          <li><label><input class="filtroPreco" data-id="22" data-tipo="price" data-valor="0/50" type="checkbox" name="preco" id="iprecoate50"> de R$0 até R$50</label></li>
+          <li><label><input class="filtroPreco" data-id="23" data-tipo="price" data-valor="51/150" type="checkbox" name="preco" id="iprecoate150"> de R$51 até R$150</label></li>
+          <li><label><input class="filtroPreco" data-id="24" data-tipo="price" data-valor="151/300" type="checkbox" name="preco" id="iprecoate300"> de R$151 até R$300</label></li>
+          <li><label><input class="filtroPreco" data-id="25" data-tipo="price" data-valor="301/500" type="checkbox" name="preco" id="iprecoate500"> de R$301 até R$500</label></li>
+          <li><label><input class="filtroPreco" data-id="26" data-tipo="price" data-valor="501/1000" type="checkbox" name="preco" id="iprecoacima500"> a partir de R$501</label></li>
+        </ul>
       </li>
     </ul>
 

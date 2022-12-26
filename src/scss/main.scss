@@ -386,10 +386,11 @@ main{
         display: block;
         border-bottom: 1px solid slategray;
         font-size: 1.6em;
+        position: relative;
     }
     .tituloFilt span{
-        position: relative;
-        left: 75%;
+        position: absolute;
+        right: 9%;
     }
 
     .tituloOrdenar{
@@ -433,30 +434,51 @@ main{
         display: block;
     }
 
-/*Configuração dos subtítulos das opções*/
+/*Configuração das opções do filtro*/
 .tituloMobileCores{
     font-size: 1.1em;
     padding-top: 10px;
     padding-bottom: 10px;
-    
 }
 .tituloMobileCores span{
     position: relative;
     left: 580px;
     font-size: 1.6em;
 }
+.tituloMobileCores ul{
+    padding-top: 10px;
+}
+.tituloMobileCores .expandeCores{
+    display: none;
+    line-height: 20px;
+}
+.tituloMobileCores .expandeCores.expande{
+    display: block;
+}
+
 .tituloMobileTamanhos{
     font-size: 1.1em;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 300px;
     width: 200px;
+    height: auto;
 }
+
+.tituloMobileTamanhos ul li{
+    display: none;
+}
+
+.tituloMobileTamanhos ul li.expande{
+    display: block;
+}
+
 .configfilttam li ul{
     display: flex;
     flex-wrap: wrap;
     width: 250px;
     padding-top: 10px;
+    height: auto;
 }
 
 .tituloMobileTamanhos span{
@@ -480,6 +502,20 @@ main{
     font-size: 1.6em;
     left: 498px;
 }
+
+.tituloMobilePrecos ul{
+    padding-top: 10px;
+}
+
+.tituloMobilePrecos ul li{
+    line-height: 22px;
+    display: none;
+}
+
+.tituloMobilePrecos ul li.expande{
+    display: block;
+}
+
 }
 
 .botoesMenuFiltrar{

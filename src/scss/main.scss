@@ -112,6 +112,7 @@ header>span{
 
 .configfilttam li{
     padding-right: 6px;
+    padding-bottom: 6px;
 }
 
 .configfilttam li input{
@@ -308,7 +309,7 @@ main{
  }
 
 /*REPONSIVIDADE PARA MOBILE*/
-@media (max-width:990px){
+@media (max-width:768px){
     .cimglogo{
         margin-left: 2%;
     }
@@ -362,8 +363,22 @@ main{
 
     .conteudoprincipal{
         max-width: 100%;
-        margin-left: 150px;
+        margin-left: 20%;
         margin-top: 140px;
+    }
+
+    /*Configuração do menu de filtros do mobile*/
+    .tituloFilt{
+        margin-left: -20px;
+        display: block;
+        // padding-bottom: 15px;
+        border-bottom: 1px solid slategray;
+        font-size: 1.6em;
+    }
+    .tituloFilt span{
+        position: relative;
+        left: 75%;
+        // font-size: 1.5em;
     }
 
     /*Configuração para menu acionados pelo mobile*/
@@ -376,22 +391,76 @@ main{
         z-index: 10000;
         position: fixed;
     }
+
+    .menumobilefilt.fechaMenuFiltros{
+        display: none;
+    }
+
+/*Configuração dos subtítulos das opções*/
+.tituloMobileCores{
+    font-size: 1.1em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+.tituloMobileCores span{
+    position: relative;
+    left: 580px;
+    font-size: 1.6em;
+}
+.tituloMobileTamanhos{
+    font-size: 1.1em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 300px;
+    // margin-left: 10px;
+    // background-color: #00C0EE;
+    width: 200px;
+    // display: block;
+}
+.configfilttam{
+    // background-color: #00C0EE;
+    // margin-left: -20px;
+    width: 250px;
+}
+.tituloMobileTamanhos span{
+   position: relative;   
+    font-size: 1.6em;
+    left: 540px;
+}
+
+
+.configfilttam li input{
+    width: 45px;
+}
+
+.tituloMobilePrecos{
+    padding-top: 60px;
+    padding-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.tituloMobilePrecos span{
+    position: relative;
+    font-size: 1.6em;
+    left: 498px;
+}
 }
 
 @media (max-width:720px){
-    .conteudoprincipal{
-        max-width: 80%;
-        margin-left: 100px;
-        margin-top: 140px;
+    .tituloMobileCores span{
+        left: 480px;
     }
-    .asidemobile input{
-        width: 100px;
+    .tituloMobileTamanhos span{
+        left: 440px;
     }
-    .asidemobile h1{
-        margin-left: 73px;
+    .tituloMobilePrecos span{
+        left: 398px;
     }
 }
-@media (max-width:600px){
+
+
+@media (max-width:620px){
     .conteudoprincipal{
         max-width: 100%;
         margin-left: 50px;
@@ -399,6 +468,21 @@ main{
     }
     .asidemobile input{
         width: 100px;
+    }
+    .tituloFilt span{
+       left: 70%; 
+    }
+    .asidemobile h1{
+        margin-left: 73px;
+    }
+    .tituloMobileCores span{
+        left: 360px;
+    }
+    .tituloMobileTamanhos span{
+        left: 320px;
+    }
+    .tituloMobilePrecos span{
+        left: 278px;
     }
 }
 
@@ -415,4 +499,22 @@ main{
     .asidemobile h1{
         margin-left: 53px;
     }
+    .tituloFilt span{
+        left: 60%; 
+     }
+     .tituloMobileCores span{
+        left: 160px;
+    }
+    .tituloMobileTamanhos span{
+        left: 120px;
+    }
+    .tituloMobilePrecos span{
+        left: 78px;
+    }
+}
+
+@media (max-width:490px){
+    .tituloFilt span{
+        left: 45%; 
+     }
 }

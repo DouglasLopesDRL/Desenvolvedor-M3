@@ -63,26 +63,9 @@ let carregarMais:boolean = false;
 let carregarParaMediaQuery:boolean = false;
 let itemCarrinho:Carrinho;
 itemCarrinho = new Carrinho();
-let filtroAtivos:{
-  id:string,
-  tipo:string,
-  valor:string
-}[] = [];
-let filtroAtivosCores:{
-  id:string,
-  tipo:string,
-  valor:string
-}[] = [];
-let filtroAtivosTamanhos:{
-  id:string,
-  tipo:string,
-  valor:string
-}[] = [];
-let filtroAtivosPrecos:{
-  id:string,
-  tipo:string,
-  valor:string
-}[] = [];
+let filtrosAtivosCores:string[] = [];
+let filtroAtivosPrecos:string[] = [];
+let filtroAtivosTamanhos:string[] = [];
 
 function main() {
   fetch(serverUrl+'/products').then(function(response) {
@@ -133,97 +116,85 @@ function inicializarLoja(cont:number,ref:number){
  }
 
 /*Controle dos filtros*/
-$('.filtro').click(function(event){
-  let objFiltro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
-    let indexFiltroAtivo = filtroAtivos.findIndex(filtro => filtro.id == objFiltro.id);
 
-    if(indexFiltroAtivo != -1){
-        filtroAtivos.splice(indexFiltroAtivo, 1)
-    }
-    else {
-        filtroAtivos.push(objFiltro);
-    }
-    filtrarProdutos();
-  if(filtroAtivos.length <= 0){
-    inicializarLoja(9,0);
-  }else {
-    
-    inicializarLoja(7,1);}
-});
-
-/*Configurando uma nova listagem de produtos aplicando filtros */
-function filtrarProdutosRoupas(){
-  
-
-}
-function separarFiltrosNosArrays(objFiltro:filtro, filtrosAny:filtro[]){
-  let indexFiltroAtivo = filtrosAny.findIndex(filtro => filtro.id == objFiltro.id);
+/*CONFIGURAÇÃO FINAL DOS FILTROS*/
+function atualizarListaFiltros(objFiltro:filtro, listaFiltros:string[]){
+  let indexFiltroAtivo = listaFiltros.indexOf(objFiltro.valor);
 
   if(indexFiltroAtivo != -1){
-    filtrosAny.splice(indexFiltroAtivo, 1)
+    listaFiltros.splice(indexFiltroAtivo, 1)
   }
   else {
-    filtrosAny.push(objFiltro);
+    listaFiltros.push(objFiltro.valor);
   }
 
-  return filtrosAny;
+  return listaFiltros;
 }
+
 
 $('.filtroCor').click(function(event){
   let objFiltro:filtro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
-  let indexFiltroAtivo = filtroAtivos.findIndex(filtro => filtro.id == objFiltro.id);
 
+  filtrosAtivosCores = atualizarListaFiltros(objFiltro, filtrosAtivosCores);
+  aplicarFiltros();
 });
 
-$('#filtroTamanho').click(function(event){
+$('.filtroTamanho').click(function(event){ //@IMPORTANTE: Pq aqui o seletor nao e por classe como nos outros filtros?
   let objFiltro:filtro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
-  let indexFiltroAtivo = filtroAtivos.findIndex(filtro => filtro.id == objFiltro.id);
+  filtroAtivosTamanhos = atualizarListaFiltros(objFiltro, filtroAtivosTamanhos);
+  aplicarFiltros();
 });
 
 $('.filtroPreco').click(function(event){
   let objFiltro:filtro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
-  filtroAtivosPrecos = separarFiltrosNosArrays(objFiltro, filtroAtivosPrecos); 
-  aplicarFiltros(); 
+  filtroAtivosPrecos = atualizarListaFiltros(objFiltro, filtroAtivosPrecos);
+  aplicarFiltros();
 });
 
 function aplicarFiltros(){
-  // filtroAtivosCores.forEach(filt =>{
-  //   listaRoupasFiltrada = listaRoupas.filter(function(roupa){return filt.valor == roupa.color});
-  // });
-    
-  // filtroAtivosTamanhos.forEach(filt =>{
-  //   listaRoupasFiltrada = listaRoupasFiltrada.filter(function(roupa){return filt.valor == roupa.size})
-  // });
-}
-
-function filtrarProdutos(){
   listaRoupasFiltrada = listaRoupas;
-  filtroAtivos.forEach(filtro =>{
-    listaRoupasFiltrada = listaRoupas.filter(function(roupa){
-      let condicaoSatisfeita:boolean = false;
-      switch(filtro.tipo){
-        case 'size':
-          // console.log("ROUPA",roupa[filtro.tipo], "FILTRO", filtro.valor);
-          condicaoSatisfeita = (roupa[filtro.tipo].includes(filtro.valor));
-          break;
-        case 'color':
-          console.log("ROUPA",roupa[filtro.tipo], "FILTRO", filtro.valor);
-          condicaoSatisfeita = (roupa[filtro.tipo] == filtro.valor);
-          break;
-        case 'price':
-          let limiteInferior = filtro.valor.split('/')[0];
-          let limiteSuperior = filtro.valor.split('/')[1];
-          condicaoSatisfeita = (Number(roupa[filtro.tipo]) >= Number(limiteInferior) && Number(roupa[filtro.tipo]) <= Number(limiteSuperior));
-          break;
-        default:
-          break;  
-      }
-      return condicaoSatisfeita;
-    });
-  });
-  return listaRoupasFiltrada;
-}
 
+  listaRoupasFiltrada = listaRoupasFiltrada.filter(function(roupa){
+    let satisfazCor = false;
+    let satisfazTamanho = false;
+    let satisfazPreco = false;
+
+    if(filtrosAtivosCores.length > 0) {
+      satisfazCor = filtrosAtivosCores.includes(roupa.color);
+    } else {
+      satisfazCor = true;
+    }
+    
+    if(filtroAtivosTamanhos.length > 0) {
+      for (let size of roupa.size) {
+        if(filtroAtivosTamanhos.includes(size)){
+          satisfazTamanho = true;
+          break;
+        }
+      }
+    } else {
+      satisfazTamanho = true;
+    }
+
+    if(filtroAtivosPrecos.length > 0) {
+      for(let preco of filtroAtivosPrecos){
+        let precoMinimo = Number(preco.split('/')[0]);
+        let precoMaximo = Number(preco.split('/')[1]);
+  
+        if(roupa.price >= precoMinimo && roupa.price <= precoMaximo){
+          satisfazPreco = true;
+          break;
+        }
+      }
+    } else {
+      satisfazPreco = true;
+    }
+
+    return satisfazCor && satisfazPreco && satisfazTamanho;
+  });
+
+  inicializarLoja(9,1);
+}
  /*Configuração do Carrinho*/
 
 function identificarItem(key:string){
@@ -247,7 +218,6 @@ function atualizarCarrinho(){
   }
  }
 
- 
 
 /*Controle de menus interativos*/
 $('.vermaiscores').click(function(){
@@ -261,12 +231,31 @@ $('.ordenarMenuLateral').click(function(){
 
 /*Controle do botão de carregar mais*/
 $('.btnCarregarMais').click(function(){
-  if(filtroAtivos.length <= 0){
+  if(filtroAtivosPrecos.length <= 0 && filtroAtivosTamanhos.length <= 0 && filtrosAtivosCores.length <= 0){
     $('.btnCarregarMais').toggleClass('botaoMaisProdutosSome');
-    inicializarLoja(14,0);
+    inicializarLoja(15,0);
   }
 });
+/*Configuração do botão de fechar e abrir dos menus mobile*/
+/*Menu de filtros*/
+$('.botaoFecharMenuFiltrar').click(function(){
+  $('.menumobilefilt').toggleClass('acaoMenu');
+});
+$('.botãoFiltrarMobile').click(function(){
+  $('.menumobilefilt').toggleClass('acaoMenu');
+});
 
+/*COnfiguração dos botões de aplicar e Limpar do menu de filtros */
+$('.botoesMenuFiltrarAplicar').click(function(){
+  $('.menumobilefilt').toggleClass('acaoMenu');
+});
+
+$('.botoesMenuFiltrarLimpar').click(function(){
+  filtroAtivosPrecos = [];
+  filtroAtivosTamanhos = [];
+  filtrosAtivosCores = [];
+  inicializarLoja(9,0);
+});
 /*Confiuração de marcação de borda nos botões de Tamanho*/
 $('.filtroTamP').click(function(){
   $('.filtroTamP').toggleClass('bordaMarcada');

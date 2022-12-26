@@ -195,6 +195,9 @@ header>span{
 .menumobilefilt{
     display: none;
 }
+.menumobileordenar{
+    display: none;
+}
 
 /*Confiuração de marcação de borda nos botões de Tamanho*/
 .filtroTamP.bordaMarcada{
@@ -246,10 +249,21 @@ header>span{
     margin-left: 40%;
     margin-top: 12%;
 }
+
 /*Configuração das oções de cada produto*/
 .produtosDaPag{
     text-align: center;
     padding: 10px;
+}
+.precoDosProdutos{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.nomeDosProdutos{
+    text-transform: uppercase;
+}
+.produtosDaPag p{
+    padding-bottom: 6px;
 }
 /*Configuração do botão de comprar dos produtos*/
 .produtosDaPag .btnComprar{
@@ -366,7 +380,7 @@ main{
         margin-top: 140px;
     }
 
-    /*Configuração do menu de filtros do mobile*/
+    /*Configuração do menu de filtros e ordenar do mobile*/
     .tituloFilt{
         margin-left: -20px;
         display: block;
@@ -376,6 +390,19 @@ main{
     .tituloFilt span{
         position: relative;
         left: 75%;
+    }
+
+    .tituloOrdenar{
+        position: relative;
+        margin-left: -20px;
+        display: block;
+        border-bottom: 1px solid slategray;
+        font-size: 1.6em;
+    }
+
+    .tituloOrdenar span{
+        position: absolute;
+        right: 8%;
     }
 
     /*Configuração para menu acionados pelo mobile*/
@@ -388,15 +415,22 @@ main{
         z-index: 10000;
         position: fixed;
     }
-
-
-    /*Configuração para o botão de abrir e fechar do menu de filtros*/
-    .menumobilefilt.acaoMenu{
-        display: block;
+    .menumobileordenar{
+        display: none;
+        background-color: white;
+        padding: 20px;
+        width: 100vw;
+        height: 100vh;
+        z-index: 10000;
+        position: fixed;
     }
 
-    .menumobilefilt.fechaMenuFiltros{
-        display: none;
+    /*Configuração para o botão de abrir e fechar do menu de filtros e ordenar*/
+    .menumobilefilt.acaoMenuFilt{
+        display: block;
+    }
+    .menumobileordenar.acaoMenuOrd{
+        display: block;
     }
 
 /*Configuração dos subtítulos das opções*/
@@ -424,9 +458,7 @@ main{
     width: 250px;
     padding-top: 10px;
 }
-// .configfilttam li ul li{
-//     display: none;
-// }
+
 .tituloMobileTamanhos span{
    position: relative;   
     font-size: 1.6em;
@@ -466,6 +498,29 @@ main{
 .botoesMenuFiltrar input:hover{
     background-color: #00C0EE;
     border-color: #00C0EE;
+}
+
+/*Configuração dos botões do menu de ordenação do mobile*/
+.menuOrdenarBotoes{
+    // background-color: #00C0EE;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-left: -20px;
+    width: 100%;
+}
+.menuOrdenarBotoes input{
+    background-color: transparent;
+    width: 100%;
+    text-align: justify;
+    height: 100px;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+.menuOrdenarBotoes input:hover{
+    background-color: #00C0EE;
 }
 
 @media (max-width:720px){

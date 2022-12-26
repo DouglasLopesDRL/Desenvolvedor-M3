@@ -56,7 +56,7 @@ class Carrinho {
 //Controlador
 const serverUrl = "http://localhost:5000";
 let listaRoupas:Roupa[];
-let listaRoupasFiltrada:Roupa[];
+let listaRoupasExibidas:Roupa[];
 type filtro = {id:string, tipo:string, valor:string};
 let carregarMenos:boolean = false;
 let carregarMais:boolean = false;
@@ -73,24 +73,28 @@ function main() {
   }).then(function(data){
     const roupa = new Roupa();
     listaRoupas= roupa.parseJson(data);
-   inicializarLoja(9,0);
+    listaRoupasExibidas = listaRoupas;
+   inicializarLoja(9);
   });
 }
 
 document.addEventListener("DOMContentLoaded", main);
 
-function carregarConteudoDaPag(cont:number, listaFinalProduto:Roupa[]){
+/*Iniciliar loja:*/
+function inicializarLoja(cont:number){
   var containerProdutos = document.getElementsByClassName("conteudoprincipal")[0];
   containerProdutos.innerHTML = '';
-    for(let val of listaFinalProduto){
-      let parcelamentoComVirgula = String(val.parcelamento);
+    for(let val of listaRoupasExibidas){
+      let parcelamentoComVirgula = String(val.parcelamento[1]);
+      let valorComVirgula = String(val.price);
+      parcelamentoComVirgula = parcelamentoComVirgula.replace(".",",");
+      valorComVirgula = valorComVirgula.replace(".",",");
       containerProdutos.innerHTML+=
       `<div class="produtosDaPag">
           <img src="${val.image}"/>
-          <p>R$ ${val.price},00</p>
-          <p>${val.color}</p>
-          <p>${val.size}</p>
-          <p>até ${val.parcelamento[0]}x de R$${parcelamentoComVirgula.replace(".",",")}</p>
+          <p class="nomeDosProdutos">${val.name}</p>
+          <p class="precoDosProdutos">R$ ${valorComVirgula}</p>
+          <p>até ${val.parcelamento[0]}x de R$${parcelamentoComVirgula}</p>
           <input data-id="${val.id}" class="btnComprar" type="button" value="Comprar">
         </div>
       `;
@@ -99,20 +103,7 @@ function carregarConteudoDaPag(cont:number, listaFinalProduto:Roupa[]){
         break;
       }
     }
-  
-}
-
-/*Iniciliar loja:*/
-function inicializarLoja(cont:number,ref:number){
-
-  /*Organizando entradas de conteúdo*/
-  if(ref == 0){
-    carregarConteudoDaPag(cont, listaRoupas);
-    // $('.btnCarregarMais').toggleClass('botaoMaisProdutosSome');
-  } else if(ref == 1){
-    carregarConteudoDaPag(cont, listaRoupasFiltrada);
-  } 
-   adicionarEventoClickAosBotoes();
+    adicionarEventoClickAosBotoes();
  }
 
 /*Controle dos filtros*/
@@ -139,7 +130,7 @@ $('.filtroCor').click(function(event){
   aplicarFiltros();
 });
 
-$('.filtroTamanho').click(function(event){ //@IMPORTANTE: Pq aqui o seletor nao e por classe como nos outros filtros?
+$('.filtroTamanho').click(function(event){
   let objFiltro:filtro = {id: this.getAttribute('data-id'), tipo: this.getAttribute('data-tipo'), valor: this.getAttribute('data-valor')};
   filtroAtivosTamanhos = atualizarListaFiltros(objFiltro, filtroAtivosTamanhos);
   aplicarFiltros();
@@ -152,9 +143,9 @@ $('.filtroPreco').click(function(event){
 });
 
 function aplicarFiltros(){
-  listaRoupasFiltrada = listaRoupas;
+  listaRoupasExibidas = listaRoupas;
 
-  listaRoupasFiltrada = listaRoupasFiltrada.filter(function(roupa){
+  listaRoupasExibidas = listaRoupasExibidas.filter(function(roupa){
     let satisfazCor = false;
     let satisfazTamanho = false;
     let satisfazPreco = false;
@@ -193,10 +184,10 @@ function aplicarFiltros(){
     return satisfazCor && satisfazPreco && satisfazTamanho;
   });
 
-  inicializarLoja(9,1);
+  inicializarLoja(9);
 }
- /*Configuração do Carrinho*/
 
+ /*Configuração do Carrinho*/
 function identificarItem(key:string){
   return listaRoupas.find(roupa=> roupa.id == key);
 }
@@ -218,6 +209,41 @@ function atualizarCarrinho(){
   }
  }
 
+/*Configração das Opções de ordenação*/
+function ordenarProdutosPorData(){
+  listaRoupasExibidas = listaRoupasExibidas.sort(function(roupaA, roupaB){
+    let data1 = new Date(roupaA.date);
+    let data2 = new Date(roupaB.date)
+    return data1 < data2?1:-1;
+  });
+}
+function ordenarProdutosPorMaiorPreco(){
+  listaRoupasExibidas = listaRoupasExibidas.sort(function(roupaA, roupaB){
+    return roupaA.price < roupaB.price?1:-1;
+  });
+}
+function ordenarProdutosPorMenorPreco(){
+  listaRoupasExibidas = listaRoupasExibidas.sort(function(roupaA, roupaB){
+    return roupaA.price > roupaB.price?1:-1;
+  });
+}
+
+/*Configuração dos botões de ordenar do site*/
+$('.botaoOrdenarPorData').click(function(){
+  ordenarProdutosPorData();
+  inicializarLoja(9);
+  $('.menumobileordenar').toggleClass('acaoMenuOrd');
+});
+$('.botaoOrdenarPorMaiorPreco').click(function(){
+  ordenarProdutosPorMaiorPreco();
+  inicializarLoja(9);
+  $('.menumobileordenar').toggleClass('acaoMenuOrd');
+});
+$('.botaoOrdenarPorMenorPreco').click(function(){
+  ordenarProdutosPorMenorPreco();
+  inicializarLoja(9);
+  $('.menumobileordenar').toggleClass('acaoMenuOrd');
+});
 
 /*Controle de menus interativos*/
 $('.vermaiscores').click(function(){
@@ -232,29 +258,34 @@ $('.ordenarMenuLateral').click(function(){
 /*Controle do botão de carregar mais*/
 $('.btnCarregarMais').click(function(){
   if(filtroAtivosPrecos.length <= 0 && filtroAtivosTamanhos.length <= 0 && filtrosAtivosCores.length <= 0){
-    $('.btnCarregarMais').toggleClass('botaoMaisProdutosSome');
-    inicializarLoja(15,0);
+    inicializarLoja(15);
   }
 });
 /*Configuração do botão de fechar e abrir dos menus mobile*/
 /*Menu de filtros*/
 $('.botaoFecharMenuFiltrar').click(function(){
-  $('.menumobilefilt').toggleClass('acaoMenu');
+  $('.menumobilefilt').toggleClass('acaoMenuFilt');
 });
 $('.botãoFiltrarMobile').click(function(){
-  $('.menumobilefilt').toggleClass('acaoMenu');
+  $('.menumobilefilt').toggleClass('acaoMenuFilt');
 });
-
+/*Menu de Ordenar*/
+$('.botaoFecharMenuOrdenar').click(function(){
+  $('.menumobileordenar').toggleClass('acaoMenuOrd');
+});
+$('.botaoOrdenarMobile').click(function(){
+  $('.menumobileordenar').toggleClass('acaoMenuOrd');
+});
 /*COnfiguração dos botões de aplicar e Limpar do menu de filtros */
 $('.botoesMenuFiltrarAplicar').click(function(){
-  $('.menumobilefilt').toggleClass('acaoMenu');
+  $('.menumobilefilt').toggleClass('acaoMenuFilt');
 });
 
 $('.botoesMenuFiltrarLimpar').click(function(){
   filtroAtivosPrecos = [];
   filtroAtivosTamanhos = [];
   filtrosAtivosCores = [];
-  inicializarLoja(9,0);
+  inicializarLoja(9);
 });
 /*Confiuração de marcação de borda nos botões de Tamanho*/
 $('.filtroTamP').click(function(){

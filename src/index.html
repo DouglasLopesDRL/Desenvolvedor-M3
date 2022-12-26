@@ -7,13 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <!--<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>-->
   <title>Desenvolvedor M3</title>
   <link rel="stylesheet" href="main.css" />
 </head>
 
 <body>
-      <!--Configurando Menu com os filtros no Mobile-->
+<!--Configuração do Menu com as opções de ordenação-->
+<nav class="menumobileordenar">
+  <div class="tituloOrdenar">ORDENAR <a class="botaoFecharMenuOrdenar" href="#">
+    <span class="material-symbols-outlined">
+      close
+      </span>
+    </a>
+  </div>
+  <div class="menuOrdenarBotoes">
+    <input class="botaoOrdenarPorData" type="button" value="Mais Recente">
+    <input class="botaoOrdenarPorMaiorPreco" type="button" value="Maior Preço">
+    <input class="botaoOrdenarPorMenorPreco" type="button" value="Menor Preço">
+  </div>
+</nav>
+<!--Configurando Menu com os filtros no Mobile-->
  <nav class="menumobilefilt">
   <div class="tituloFilt">FILTRAR <a class="botaoFecharMenuFiltrar" href="#">
     <span class="material-symbols-outlined">
@@ -26,16 +39,16 @@
       <li class="tituloMobileCores">CORES <span id="" class="material-symbols-outlined">
         expand_more
         </span>
-          <li><label><input class="filtro" data-id="1" data-tipo="color" data-valor="Amarelo" type="checkbox" name="cor" id="icoramarelo"> Amarelo</label></li>
-          <li><label><input class="filtro" data-id="2" data-tipo="color" data-valor="Azul" type="checkbox" name="cor" id="icorazul"> Azul</label></li>
-          <li><label><input class="filtro" data-id="3" data-tipo="color" data-valor="Branco" type="checkbox" name="cor" id="icorbranco"> Branco</label></li>
-          <li><label><input class="filtro" data-id="4" data-tipo="color" data-valor="Cinza" type="checkbox" name="cor" id="icorcinza"> Cinza</label></li>
-          <li><label><input class="filtro" data-id="5" data-tipo="color" data-valor="Laranja" type="checkbox" name="cor" id="icorlaranja"> Laranja</label></li>
-          <li><label><input class="filtro" data-id="6" data-tipo="color" data-valor="Verde" type="checkbox" name="cor" id="icorverde"> Verde</label></li>
-          <li><label><input class="filtro" data-id="7" data-tipo="color" data-valor="Vermelho" type="checkbox" name="cor" id="icorvermelho"> Vermelho</label></li>
-          <li><label><input class="filtro" data-id="8" data-tipo="color" data-valor="Preto" type="checkbox" name="cor" id="icorpreto"> Preto</label></li>
-          <li><label><input class="filtro" data-id="9" data-tipo="color" data-valor="Rosa" type="checkbox" name="cor" id="icorrosa"> Rosa</label></li>
-          <li><label><input class="filtro" data-id="10" data-tipo="color" data-valor="Vinho" type="checkbox" name="cor" id="icorvinho"> Vinho</label></li>
+          <li><label><input class="filtroCor" data-id="1" data-tipo="color" data-valor="Amarelo" type="checkbox" name="cor" id="icoramarelo"> Amarelo</label></li>
+          <li><label><input class="filtroCor" data-id="2" data-tipo="color" data-valor="Azul" type="checkbox" name="cor" id="icorazul"> Azul</label></li>
+          <li><label><input class="filtroCor" data-id="3" data-tipo="color" data-valor="Branco" type="checkbox" name="cor" id="icorbranco"> Branco</label></li>
+          <li><label><input class="filtroCor" data-id="4" data-tipo="color" data-valor="Cinza" type="checkbox" name="cor" id="icorcinza"> Cinza</label></li>
+          <li><label><input class="filtroCor" data-id="5" data-tipo="color" data-valor="Laranja" type="checkbox" name="cor" id="icorlaranja"> Laranja</label></li>
+          <li><label><input class="filtroCor" data-id="6" data-tipo="color" data-valor="Verde" type="checkbox" name="cor" id="icorverde"> Verde</label></li>
+          <li><label><input class="filtroCor" data-id="7" data-tipo="color" data-valor="Vermelho" type="checkbox" name="cor" id="icorvermelho"> Vermelho</label></li>
+          <li><label><input class="filtroCor" data-id="8" data-tipo="color" data-valor="Preto" type="checkbox" name="cor" id="icorpreto"> Preto</label></li>
+          <li><label><input class="filtroCor" data-id="9" data-tipo="color" data-valor="Rosa" type="checkbox" name="cor" id="icorrosa"> Rosa</label></li>
+          <li><label><input class="filtroCor" data-id="10" data-tipo="color" data-valor="Vinho" type="checkbox" name="cor" id="icorvinho"> Vinho</label></li>
       </li>
     </ul>
     <ul class="configfilttam">
@@ -43,17 +56,17 @@
         expand_more
         </span> 
         <ul>
-          <li><input class="filtro filtroTamanho" id="11" data-id="11" data-tipo="size" data-valor="P" type="button" value="P"></li>
-          <li><input class="filtro filtroTamanho" id="13" data-id="13" data-tipo="size" data-valor="M" type="button" value="M"></li>
-          <li><input class="filtro filtroTamanho" id="12" data-id="12" data-tipo="size" data-valor="G" type="button" value="G"></li>          
-          <li><input class="filtro filtroTamanho" data-id="14" data-tipo="size" data-valor="GG" type="button" value="GG"></li>
-          <li><input class="filtro filtroTamanho" data-id="15" data-tipo="size" data-valor="U" type="button" value="U"></li>          
-          <li><input class="filtro filtroTamanho" data-id="16" data-tipo="size" data-valor="36" type="button" value="36"></li>
-          <li><input class="filtro filtroTamanho" data-id="17" data-tipo="size" data-valor="38" type="button" value="38"></li>
-          <li><input class="filtro filtroTamanho" data-id="18" data-tipo="size" data-valor="40" type="button" value="40"></li>
-          <li><input class="filtro filtroTamanho" data-id="19" data-tipo="size" data-valor="42" type="button" value="42"></li>
-          <li><input class="filtro filtroTamanho" data-id="20" data-tipo="size" data-valor="44" type="button" value="44"></li>
-          <li><input class="filtro filtroTamanho" data-id="21" data-tipo="size" data-valor="46" type="button" value="46"></li>
+          <li><input class=" filtroTamanho" id="11" data-id="11" data-tipo="size" data-valor="P" type="button" value="P"></li>
+          <li><input class=" filtroTamanho" id="13" data-id="13" data-tipo="size" data-valor="M" type="button" value="M"></li>
+          <li><input class=" filtroTamanho" id="12" data-id="12" data-tipo="size" data-valor="G" type="button" value="G"></li>          
+          <li><input class=" filtroTamanho" data-id="14" data-tipo="size" data-valor="GG" type="button" value="GG"></li>
+          <li><input class=" filtroTamanho" data-id="15" data-tipo="size" data-valor="U" type="button" value="U"></li>          
+          <li><input class=" filtroTamanho" data-id="16" data-tipo="size" data-valor="36" type="button" value="36"></li>
+          <li><input class=" filtroTamanho" data-id="17" data-tipo="size" data-valor="38" type="button" value="38"></li>
+          <li><input class=" filtroTamanho" data-id="18" data-tipo="size" data-valor="40" type="button" value="40"></li>
+          <li><input class=" filtroTamanho" data-id="19" data-tipo="size" data-valor="42" type="button" value="42"></li>
+          <li><input class=" filtroTamanho" data-id="20" data-tipo="size" data-valor="44" type="button" value="44"></li>
+          <li><input class=" filtroTamanho" data-id="21" data-tipo="size" data-valor="46" type="button" value="46"></li>
         </ul>
       </li>
     </ul>
@@ -62,11 +75,11 @@
       <li class="tituloMobilePrecos">FAIXA DE PREÇO <span id="" class="material-symbols-outlined">
         expand_more
         </span>
-        <li><label><input class="filtro" data-id="22" data-tipo="price" data-valor="0/50" type="checkbox" name="preco" id="iprecoate50"> de R$0 até R$50</label></li>
-        <li><label><input class="filtro" data-id="23" data-tipo="price" data-valor="51/150" type="checkbox" name="preco" id="iprecoate150"> de R$51 até R$150</label></li>
-        <li><label><input class="filtro" data-id="24" data-tipo="price" data-valor="151/300" type="checkbox" name="preco" id="iprecoate300"> de R$151 até R$300</label></li>
-        <li><label><input class="filtro" data-id="25" data-tipo="price" data-valor="301/500" type="checkbox" name="preco" id="iprecoate500"> de R$301 até R$500</label></li>
-        <li><label><input class="filtro" data-id="26" data-tipo="price" data-valor="501/1000" type="checkbox" name="preco" id="iprecoacima500"> a partir de R$501</label></li>
+        <li><label><input class="filtroPreco" data-id="22" data-tipo="price" data-valor="0/50" type="checkbox" name="preco" id="iprecoate50"> de R$0 até R$50</label></li>
+        <li><label><input class="filtroPreco" data-id="23" data-tipo="price" data-valor="51/150" type="checkbox" name="preco" id="iprecoate150"> de R$51 até R$150</label></li>
+        <li><label><input class="filtroPreco" data-id="24" data-tipo="price" data-valor="151/300" type="checkbox" name="preco" id="iprecoate300"> de R$151 até R$300</label></li>
+        <li><label><input class="filtroPreco" data-id="25" data-tipo="price" data-valor="301/500" type="checkbox" name="preco" id="iprecoate500"> de R$301 até R$500</label></li>
+        <li><label><input class="filtroPreco" data-id="26" data-tipo="price" data-valor="501/1000" type="checkbox" name="preco" id="iprecoacima500"> a partir de R$501</label></li>
       </li>
     </ul>
 
@@ -140,9 +153,9 @@
             expand_more
             </span>
             <ul class="itensOrdenar">
-              <li><a href="#">Mais recentes</a></li>
-              <li><a href="#">Menor preço</a></li>
-              <li><a href="#">Maior preço</a></li>
+              <li><a class="botaoOrdenarPorData" href="#">Mais recentes</a></li>
+              <li><a class="botaoOrdenarPorMenorPreco" href="#">Menor preço</a></li>
+              <li><a class="botaoOrdenarPorMaiorPreco" href="#">Maior preço</a></li>
             </ul>
         </li>
       </ul>
@@ -160,7 +173,7 @@
     <!--Botões que acionam os menus para o mobile--> 
     <aside class="asidemobile">
       <h1>Blusas</h1>
-      <input class="botãoFiltrarMobile" type="button" value="Filtrar"><input type="button" value="Ordenar">
+      <input class="botãoFiltrarMobile" type="button" value="Filtrar"><input class="botaoOrdenarMobile" type="button" value="Ordenar">
     </aside>
 
     <footer class="rodape">Agência M3 - Agência de Perfomance Digital</footer>

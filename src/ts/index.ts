@@ -288,7 +288,7 @@ $('.botoesMenuFiltrarLimpar').click(function(){
 
 /*Configuração dos botões de expandir menus de filtros*/
 $('.botaoExpandeCores').click(function(){
-  $('.tituloMobileCores .expandeCores').toggleClass('expande');
+  $('.tituloMobileCores ul li').toggleClass('expande');
 });
 
 $('.botaoExpandeTamanhos').click(function(){

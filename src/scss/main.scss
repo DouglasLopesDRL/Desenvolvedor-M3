@@ -12,6 +12,7 @@ body{
     display: flex;
     flex-direction: column;
     max-height: 100vh;
+    flex-grow: 1;
 }
 
 header{
@@ -20,12 +21,15 @@ header{
     width: 100%;
     height: 60px;
     border-bottom: 2px solid silver;
+    position: absolute;
 }
 /*Configuração da logo M3 no menu*/
 .cimglogo{
     position: absolute;
     left: 11%;
     padding: 15px;
+    width: 120px;
+    z-index: 1000;
 }
 /*Configuração do carrinho*/
 .carrinho{
@@ -57,7 +61,7 @@ header>span{
 
 /*Configuração dos títulos*/
 .titulo{
-    padding: 70px 0px 90px 20px;
+    padding: 120px 0px 90px 20px;
     font-size: 1.8em;
 }
 
@@ -363,7 +367,8 @@ main{
     .asidemobile h1{
         font-size: 1.4em;
         margin-left: 120px;
-        padding-bottom: 15px;
+        padding-bottom: 20px;
+        padding-top: 20px;
     }
 
     .btnCarregarMais{
@@ -448,11 +453,11 @@ main{
 .tituloMobileCores ul{
     padding-top: 10px;
 }
-.tituloMobileCores .expandeCores{
+.tituloMobileCores ul li{
     display: none;
     line-height: 20px;
 }
-.tituloMobileCores .expandeCores.expande{
+.tituloMobileCores ul li.expande{
     display: block;
 }
 
